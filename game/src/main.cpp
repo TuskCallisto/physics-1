@@ -45,20 +45,19 @@ int main()
     launchPosition.x = platform.x + platform.width - birdRadius;
     launchPosition.y = platform.y - (platform.height - birdRadius);
 
-    // All you have to do for lab exercise 2 is add the remaining if-statements to countrol launch angle and launch speed
-    // Be sure to complete the re-launch logic when space is pressed too!
     while (!WindowShouldClose())
     {
         float dt = GetFrameTime();
 
-        // When space is pressed (lab 2 part 1):
+        // All I care about is that you can launch multiple birds correctly for LE2.
+        // Don't worry about the "demonstraight different angles or changing gravity" instructions.
         if (IsKeyPressed(KEY_SPACE))
         {
             PhysicsBody bird;
             // 1) TODO -- Set bird position to launch position
-            // 2) TODO -- Set bird velocity to futureLaunchVelocity
+            // 2) TODO -- Set bird velocity to launch velocity
             // 
-            // 3) Add bird to physics world and watch it fly (done below)
+            // 3) Add bird to physics world and watch it fly (done below)!
             world.entities.push_back(bird);
         }
 

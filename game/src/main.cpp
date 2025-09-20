@@ -54,6 +54,8 @@ int main()
         if (IsKeyPressed(KEY_SPACE))
         {
             PhysicsBody bird;
+            bird.position = launchPosition;
+            bird.velocity = Vector2Rotate(Vector2UnitX, birdAngle) * birdSpeed;
             // 1) TODO -- Set bird position to launch position
             // 2) TODO -- Set bird velocity to launch velocity
             // 

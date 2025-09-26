@@ -16,7 +16,17 @@ struct PhysicsWorld
     Vector2 gravity = { 0.0f, 9.81f };
     std::vector<PhysicsBody> entities;
 };
-
+void cleanup(PhysicsWorld& world)
+{
+    for (int i = (int)world.entities.size() - 1; i >= 0; i--)
+    {
+        PhysicsBody& body = world.entities[i];
+        if (body.position.y - 10.0f > GetScreenHeight())
+        {
+            world.entities.erase(world.entities.begin() + i);
+        }
+    }
+}
 int main()
 {
     InitWindow(800, 800, "Physics-1");
@@ -104,7 +114,14 @@ int main()
         {
             birdSpeed += 50.0 * dt;
         }
-
+        if (IsKeyDown(KEY_UP))
+        {
+            world.gravity.y -= 100.0f * dt;
+        }
+        if (IsKeyDown(KEY_DOWN))
+        {
+            world.gravity.y += 100.0f * dt;
+        }
         // Update all physics bodies
         for (size_t i = 0; i < world.entities.size(); i++)
         {
@@ -137,6 +154,7 @@ int main()
             DrawText(TextFormat("Launch Position: %f %f", launchPosition.x, launchPosition.y), 10, 10, 20, RED);
             DrawText(TextFormat("Launch Angle: %f", birdAngle), 10, 40, 20, ORANGE);
             DrawText(TextFormat("Launch Speed: %f", birdSpeed), 10, 70, 20, GOLD);
+            DrawText(TextFormat("Gravity: %f", world.gravity.y), 10, 100, 20, BLUE);
         EndDrawing();
     }
 
